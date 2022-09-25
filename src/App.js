@@ -5,24 +5,20 @@ import { palavras } from "./palavras";
 
 export default function App() {
   const [sorteio, setSorteio] = useState("");
-  //const [clicado, setClicado] = useState([]);
   const [linhas, setLinhas] = useState("");
-  ///const maiusculoSorteado = sorteio.toUpperCase();
-  
-  
 
   function Alfabeto(props) {
-    const [color, setColor] = useState(props.color);
+    const {letra, color} = props;
+    const [cor, setCor] = useState(color);
+
     function clicou(letra) {
       if(sorteio.includes(letra) === true){
-        setColor("red")
-      } else {
-        setColor("#e1ecf4")
-      }
-      
+        setCor("red")
+      } 
+      console.log(letra, sorteio)
     }
     return (
-    <button onClick={() => clicou(props.letra)} style={{ backgroundColor: `${color}` }}>{props.letra}</button>
+    <button onClick={() => clicou(letra)} style={{ backgroundColor: `${cor}` }}>{letra}</button>
     )
   
   }
@@ -31,38 +27,39 @@ export default function App() {
     const sorteado = palavras[Math.floor(Math.random() * palavras.length)];
     let underline = "__ ";
     let tamanho = sorteado.length;
-    console.log(sorteio, sorteado)
-    setSorteio([sorteado]);
+
+  
+    setSorteio(sorteado);
     setLinhas(underline.repeat(tamanho));
   }
   
   const alfabeto = [
-    { letra: "A", color: "#e1ecf4" },
-    { letra: "B", color: "#e1ecf4" },
-    { letra: "C", color: "#e1ecf4" },
-    { letra: "D", color: "#e1ecf4" },
-    { letra: "E", color: "#e1ecf4" },
-    { letra: "F", color: "#e1ecf4" },
-    { letra: "G", color: "#e1ecf4" },
-    { letra: "H", color: "#e1ecf4" },
-    { letra: "I", color: "#e1ecf4" },
-    { letra: "J", color: "#e1ecf4" },
-    { letra: "K", color: "#e1ecf4" },
-    { letra: "L", color: "#e1ecf4" },
-    { letra: "M", color: "#e1ecf4" },
-    { letra: "N", color: "#e1ecf4" },
-    { letra: "O", color: "#e1ecf4" },
-    { letra: "P", color: "#e1ecf4" },
-    { letra: "Q", color: "#e1ecf4" },
-    { letra: "R", color: "#e1ecf4" },
-    { letra: "S", color: "#e1ecf4" },
-    { letra: "T", color: "#e1ecf4" },
-    { letra: "U", color: "#e1ecf4" },
-    { letra: "V", color: "#e1ecf4" },
-    { letra: "W", color: "#e1ecf4" },
-    { letra: "X", color: "#e1ecf4" },
-    { letra: "Y", color: "#e1ecf4" },
-    { letra: "Z", color: "#e1ecf4" },
+    { letra: "a", color: "#e1ecf4" },
+    { letra: "b", color: "#e1ecf4" },
+    { letra: "c", color: "#e1ecf4" },
+    { letra: "d", color: "#e1ecf4" },
+    { letra: "e", color: "#e1ecf4" },
+    { letra: "f", color: "#e1ecf4" },
+    { letra: "g", color: "#e1ecf4" },
+    { letra: "h", color: "#e1ecf4" },
+    { letra: "i", color: "#e1ecf4" },
+    { letra: "j", color: "#e1ecf4" },
+    { letra: "k", color: "#e1ecf4" },
+    { letra: "l", color: "#e1ecf4" },
+    { letra: "m", color: "#e1ecf4" },
+    { letra: "n", color: "#e1ecf4" },
+    { letra: "o", color: "#e1ecf4" },
+    { letra: "p", color: "#e1ecf4" },
+    { letra: "q", color: "#e1ecf4" },
+    { letra: "r", color: "#e1ecf4" },
+    { letra: "s", color: "#e1ecf4" },
+    { letra: "t", color: "#e1ecf4" },
+    { letra: "u", color: "#e1ecf4" },
+    { letra: "v", color: "#e1ecf4" },
+    { letra: "w", color: "#e1ecf4" },
+    { letra: "x", color: "#e1ecf4" },
+    { letra: "y", color: "#e1ecf4" },
+    { letra: "z", color: "#e1ecf4" },
   ];
 
   return (
@@ -79,9 +76,9 @@ export default function App() {
       </div>
 
       <div className="conteiner-letras">
-        <div class="letras">
+        <div className="letras">
           {alfabeto.map((a, index) => (
-            <Alfabeto letra={a.letra} color={a.color} />
+            <Alfabeto letra={a.letra} color={a.color} key = {index}/>
           ))}
         </div>
       </div>
