@@ -23,12 +23,12 @@
     font-family: 'Roboto', sans-serif;
 }
 .letras {
-    margin: 0 380px 0 380px;
+    margin: 0 650px 0 650px;
     flex-wrap: wrap;
 }
 .letras > button {
-    width: 35px;
-    height: 30px;
+    width: 40px;
+    height: 35px;
     background-color: #9faab5;
     margin: 0 5px 5px 0;
     border-radius: 4px;
@@ -36,7 +36,7 @@
 
 }
 .Bottom {
-    margin: 50px 0 0 450px;
+    margin: 50px 0 0 700px;
 
 }
 .Bottom > input {
@@ -52,4 +52,13 @@
     color: #39739d;
     font-family: 'Roboto', sans-serif;
 
+}
+/* .words {
+    
+} */
+.cor{
+    background-color: red;
+}
+.cor1{
+    color: gre;
 }
