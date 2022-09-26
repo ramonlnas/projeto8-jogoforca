@@ -1,38 +1,58 @@
 import { useState } from "react";
 import { palavras } from "./palavras";
 
-
-
 export default function App() {
   const [sorteio, setSorteio] = useState("");
-  const [linhas, setLinhas] = useState("");
+  const [contador, setContador] = useState(1);
+  const [secreto, setSecreto] = useState("");
+  const [clicado, setClicado] = useState();
+  const [listaClicada, setListaClicada] = useState([]);
 
   function Alfabeto(props) {
-    const {letra, color} = props;
+    const { letra, color } = props;
     const [cor, setCor] = useState(color);
+    console.log(cor);
 
     function clicou(letra) {
-      if(sorteio.includes(letra) === true){
-        setCor("red")
-      } 
-      console.log(letra, sorteio)
+      const novaLista = [...listaClicada,letra]
+      setListaClicada(novaLista)
+
+      if (clicado.includes(letra)) {
+        const letraCerta = clicado.indexOf(letra);
+        console.log(letraCerta);
+        setSecreto(secreto.fill([letra], letraCerta, letraCerta + 1));
+        console.log(secreto);
+        setCor("green");
+      } else {
+        setContador(contador + 1);
+        setCor("red");
+
+      }
+      console.log(letra, sorteio);
+      console.log(clicado);
     }
     return (
-    <button onClick={() => clicou(letra)} style={{ backgroundColor: `${cor}` }}>{letra}</button>
-    )
-  
+      <button
+        onClick={() => clicou(letra)}
+        style={{ backgroundColor: `${cor}` }}
+      >
+        {letra}
+      </button>
+    );
   }
 
   function iniciarJogo() {
     const sorteado = palavras[Math.floor(Math.random() * palavras.length)];
-    let underline = "__ ";
-    let tamanho = sorteado.length;
-
-  
+    const arraySorteado = sorteado.split("");
+    console.log(arraySorteado);
+    setClicado(arraySorteado);
+    const palavraSeparada = [...arraySorteado];
+    const underline = palavraSeparada.fill(" _ ");
+    setSecreto(underline);
     setSorteio(sorteado);
-    setLinhas(underline.repeat(tamanho));
-  }
   
+  }
+
   const alfabeto = [
     { letra: "a", color: "#e1ecf4" },
     { letra: "b", color: "#e1ecf4" },
@@ -65,20 +85,20 @@ export default function App() {
   return (
     <>
       <div className="Topo">
-        <img src="assets/forca0.png" alt="Forca"/>
+        <img src="assets/forca0.png" alt="Forca" />
         <button onClick={() => iniciarJogo()}>Escolher Palavra</button>
       </div>
       <div className="words">
-        <span>{sorteio}</span>
+        <span>{}</span>
       </div>
       <div className="underline">
-        <span>{linhas}</span>
+        <span>{secreto}</span>
       </div>
 
       <div className="conteiner-letras">
         <div className="letras">
           {alfabeto.map((a, index) => (
-            <Alfabeto letra={a.letra} color={a.color} key = {index}/>
+            <Alfabeto letra={a.letra} color={a.color} key={index} />
           ))}
         </div>
       </div>
